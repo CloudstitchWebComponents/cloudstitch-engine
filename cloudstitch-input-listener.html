@@ -1,0 +1,117 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="./handlebars-template.html">
+<link rel="import" href="../cloudstitch-spreadsheet/cloudstitch-spreadsheet.html">
+
+<!--
+An element that syncs input elements with remote.
+
+Example:
+
+    <cloudstitch-input-listener></cloudstitch-input-listener>
+
+@group Cloudstitch
+@element cloudstitch-input-listener
+@demo demo/index.html
+-->
+<dom-module id="cloudstitch-input-listener">
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+  <template>
+    <div id="hiab">
+      <cloudstitch-spreadsheet id="sheet" user="{{user}}" app="{{app}}" label="{{label}}" projection="items" content="{{sheetdata}}"></cloudstitch-spreadsheet>
+      <handlebars-template id="templ" data="{{sheetdata}}"><content></content></handlebars-template>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer.CloudstitchTransform = function() {
+    this.oldValue = null;
+    this.newValue = null;
+    this.state = null;
+    this.operation = null;
+    this.user = null;
+    this.app = null;
+    this.kind = null;
+    this.label = null;
+    this.path = null;
+  };
+
+  Polymer({
+
+    is: 'cloudstitch-input-listener',
+
+    properties: {
+      /**
+       * The Cloudstitch username.
+       */
+      user: {
+        type: String,
+        value: null
+      },
+
+      /**
+       * The Cloudstitch project name.
+       */
+      app: {
+        type: String,
+        value: null
+      },
+
+      /**
+       * The label of the Cloudstitch datasource.
+       */
+      kind: {
+        type: String,
+        value: null
+      },
+
+      /**
+       * The label of the Cloudstitch datasource.
+       */
+      label: {
+        type: String,
+        value: 'sheet'
+      }
+   },
+
+    // Element Lifecycle
+    makeTransaction: function() {
+                     }
+
+
+    ready: function() {
+      // `ready` is called after all elements have been configured, but
+      // propagates bottom-up. This element's children are ready, but parents
+      // are not.
+      //
+      // This is the point where you should make modifications to the DOM (when
+      // necessary), or kick off any processes the element wants to perform.
+
+      // Save the template.
+    },
+
+    attached: function() {
+      // `attached` fires once the element and its parents have been inserted
+      // into a document.
+      //
+      // This is a good place to perform any work related to your element's
+      // visual state or active behavior (measuring sizes, beginning animations,
+      // loading resources, etc).
+    },
+
+    detached: function() {
+      // The analog to `attached`, `detached` fires when the element has been
+      // removed from a document.
+      //
+      // Use this to clean up anything you did in `attached`.
+    }
+
+  });
+
+</script>
